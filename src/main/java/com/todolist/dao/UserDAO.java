@@ -58,13 +58,13 @@ public enum UserDAO {
     }
 
     public void create(User user) throws ExceptionDAO {
-        String query = "INSERT INTO users (fistName, lastName, login, password) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Users (login, password, firstName, lastName) VALUES (?, ?, ?, ?)";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getLogin());
-            statement.setString(4, user.getPassword());
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
             statement.executeUpdate();
         } catch (SQLException sqle) {
             throw new ExceptionDAO("Can`t execute query", sqle);

@@ -19,7 +19,7 @@ public enum ItemDAO {
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     Item item = new Item();
                     item.setId(resultSet.getInt("id"));
                     item.setText(resultSet.getString("firstName"));

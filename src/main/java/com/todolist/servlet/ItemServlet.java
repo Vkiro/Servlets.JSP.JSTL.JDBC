@@ -21,8 +21,9 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Item> items = ItemDAO.INSTANCE.getAllByUserId(FindUserServlet.user.getId());
+        List<Item> items = ItemDAO.INSTANCE.getAllByUserId((Integer) req.getSession().getAttribute("id"));
         req.setAttribute("items", items);
         req.getRequestDispatcher("/item.jsp").forward(req, resp);
+        System.out.println(req.getSession().getAttribute("id"));
     }
 }

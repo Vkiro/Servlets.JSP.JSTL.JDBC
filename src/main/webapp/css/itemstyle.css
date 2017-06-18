@@ -13,13 +13,13 @@ table {
 
 th {
     height: 50px;
-    background-color: #4CAF50;
+    background-color: #76b852;
     color: white;
 }
 
 h2 {
     text-align: center;
-    color: #4CAF50;
+    color: #76b852;
 }
 
 th, h2 {
@@ -31,4 +31,21 @@ td:nth-child(1) {
 }
 input[type="text"] {
     width: 50%;
+}
+
+table tr td:nth-child(2) {
+    word-break: break-all;
+}
+
+form {
+    text-align: center;
+}
+
+#delete, #update {
+    float:left;
+    width:100%;
+}
+
+td:nth-child(1) {
+    width:10000px;
 }

@@ -9,16 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
-@WebServlet("/addItem")
-public class AddItemServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Item item = new Item(request.getParameter("item"), FindUserServlet.user.getId());
-        ItemDAO.INSTANCE.create(item);
-        request.getRequestDispatcher("/item").forward(request, response);
+        // Get the name of pressed button
+        Enumeration enumeration = request.getParameterNames();
+        String parameterName = (String) enumeration.nextElement();
+        // Parse it to int and get Id
+        int itemId = Integer.parseInt(parameterName);
+
+        Item item = ItemDAO.INSTANCE.getById(itemId);
+
+        request.setAttribute("item", item);
+        request.getRequestDispatcher("/update.jsp").forward(request, response);
     }
 }

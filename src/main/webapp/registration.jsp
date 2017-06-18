@@ -13,7 +13,7 @@
             <input type="password" placeholder="confirm" name="confirm" required/>
             <input type="text" placeholder="first name" name="firstName" required/>
             <input type="text" placeholder="last name" name="lastName" required/>
-            <input type="submit" value="Register" name="register" required/>
+            <input type="submit" value="Registration" name="register" required/>
         </form>
     </div>
 </div>

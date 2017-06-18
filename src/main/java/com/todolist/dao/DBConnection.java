@@ -13,8 +13,9 @@ public enum DBConnection {
 
     public Connection getConnection() throws ExceptionDAO {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection(URL, LOGIN, PASSWORD);
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw new ExceptionDAO("Cannot connect", e);
         }
     }

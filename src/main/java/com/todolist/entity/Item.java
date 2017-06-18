@@ -5,6 +5,14 @@ public class Item {
     private String text;
     private int userId;
 
+    public Item() {
+    }
+
+    public Item(String text, int userId) {
+        this.text = text;
+        this.userId = userId;
+    }
+
     public int getId() {
         return id;
     }

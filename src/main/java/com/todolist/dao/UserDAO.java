@@ -57,6 +57,30 @@ public enum UserDAO {
         return user;
     }
 
+    public User getByLoginAndPassword(String login, String password) {
+        String query = "SELECT id, login, password, firstName, lastName FROM Users WHERE login = ? AND password = ?";
+        User user;
+        try (Connection connection = DBConnection.INSTANCE.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                resultSet.next();
+                user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
+                user.setFirstName(resultSet.getString("firstName"));
+                user.setLastName(resultSet.getString("lastName"));
+            } catch (SQLException sqle) {
+                throw new ExceptionDAO("Can`t execute query", sqle);
+            }
+        } catch (SQLException sqle) {
+            throw new ExceptionDAO("Can`t execute query", sqle);
+        }
+        return user;
+    }
+
     public void create(User user) throws ExceptionDAO {
         String query = "INSERT INTO Users (login, password, firstName, lastName) VALUES (?, ?, ?, ?)";
         try (Connection connection = DBConnection.INSTANCE.getConnection();

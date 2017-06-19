@@ -11,12 +11,9 @@ public enum DBConnection {
     private static final String LOGIN = "root";
     private static final String PASSWORD = "root";
 
-    public Connection getConnection() throws ExceptionDAO {
-        try {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
             Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection(URL, LOGIN, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new ExceptionDAO("Cannot connect", e);
-        }
+
     }
 }

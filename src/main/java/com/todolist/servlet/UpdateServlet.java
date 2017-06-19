@@ -13,10 +13,8 @@ import java.util.Enumeration;
 
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the name of pressed button
         Enumeration enumeration = request.getParameterNames();

@@ -15,15 +15,9 @@ import java.util.List;
 public class ItemServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Item> items = ItemDAO.INSTANCE.getAllByUserId((Integer) req.getSession().getAttribute("id"));
-        req.setAttribute("items", items);
-        req.getRequestDispatcher("/item.jsp").forward(req, resp);
-        System.out.println(req.getSession().getAttribute("id"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Item> items = ItemDAO.INSTANCE.getAllByUserId((Integer) request.getSession().getAttribute("id"));
+        request.setAttribute("items", items);
+        request.getRequestDispatcher("/item.jsp").forward(request, response);
     }
 }

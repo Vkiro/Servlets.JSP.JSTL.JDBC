@@ -12,18 +12,20 @@ import java.io.IOException;
 
 @WebServlet("/createUser")
 public class CreateUserServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
 
-        User user = new User(login, password, firstName, lastName);
-        UserDAO.INSTANCE.create(user);
-        request.getRequestDispatcher("/login").forward(request, response);
+        if ("".equals(login) || "".equals(password) || "".equals(firstName) || "".equals(lastName)) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } else {
+            User user = new User(login, password, firstName, lastName);
+            UserDAO.INSTANCE.create(user);
+            request.getRequestDispatcher("/login").forward(request, response);
+        }
     }
 }

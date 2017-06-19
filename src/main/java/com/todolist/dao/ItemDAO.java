@@ -29,8 +29,8 @@ public enum ItemDAO {
             } catch (SQLException sqle) {
                 throw new ExceptionDAO("Can`t execute query", sqle);
             }
-        } catch (SQLException sqle) {
-            throw new ExceptionDAO("Can`t execute query", sqle);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ExceptionDAO("Can`t execute query", e);
         }
         return items;
     }
@@ -50,8 +50,8 @@ public enum ItemDAO {
             } catch (SQLException sqle) {
                 throw new ExceptionDAO("Can`t execute query", sqle);
             }
-        } catch (SQLException sqle) {
-            throw new ExceptionDAO("Can`t execute query", sqle);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ExceptionDAO("Can`t execute query", e);
         }
         return item;
     }
@@ -63,8 +63,8 @@ public enum ItemDAO {
             statement.setString(1, item.getText());
             statement.setInt(2, item.getUserId());
             statement.executeUpdate();
-        } catch (SQLException sqle) {
-            throw new ExceptionDAO("Can`t execute query", sqle);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ExceptionDAO("Can`t execute query", e);
         }
     }
 
@@ -75,8 +75,8 @@ public enum ItemDAO {
             statement.setString(1, text);
             statement.setInt(2, id);
             statement.executeUpdate();
-        } catch (SQLException sqle) {
-            throw new ExceptionDAO("Can`t execute query", sqle);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ExceptionDAO("Can`t execute query", e);
         }
     }
 
@@ -86,8 +86,8 @@ public enum ItemDAO {
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
-        } catch (SQLException sqle) {
-            throw new ExceptionDAO("Can`t execute query", sqle);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ExceptionDAO("Can`t execute query", e);
         }
     }
 }

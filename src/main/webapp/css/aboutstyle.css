@@ -1,4 +1,4 @@
-﻿* {
+* {
     font-family: Arial;
 }
 
@@ -26,12 +26,20 @@ th, h2 {
     text-shadow: 0 1px 0 black;
 }
 
-td:nth-child(1) {
+td:nth-child(n) {
     text-align: center;
+    width:33%;
 }
 input[type="text"] {
     width: 50%;
 }
+
+input[type="submit"] {
+    text-shadow: 0 1px 0 black;
+    color:white;
+    cursor:pointer;
+}
+
 
 table tr td:nth-child(1) {
     word-break: break-all;
@@ -46,31 +54,17 @@ form {
     width:100%;
 }
 
-td:nth-child(1) {
-    width:10000px;
-}
-
 .form {
     width:50%;
     margin-left:auto;
     margin-right:auto;
 }
 
-.form input, .add {
+.form input {
     font-family: "Roboto", sans-serif;
     background: #76b852;
-    text-shadow: 0 1px 0 black;
     width: 20%;
     margin: 0 5px 15px;
     padding: 10px;
     font-size: 18px;
-    color:white;
-    cursor:pointer;
-}
-
-.add {
-    margin:5px;
-    padding:0px;
-    font-size:18px;
-    width:10%;
 }

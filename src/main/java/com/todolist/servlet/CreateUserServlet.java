@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/createUser")
 public class CreateUserServlet extends HttpServlet {
@@ -22,6 +23,12 @@ public class CreateUserServlet extends HttpServlet {
 
         if ("".equals(login) || "".equals(password) || "".equals(firstName) || "".equals(lastName)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } else if (UserDAO.INSTANCE.getAllLogins().contains(login)) {
+            //TODO
+            request.getRequestDispatcher("/registration").forward(request, response);
+        } else if (password.length() < 6) {
+            //TODO
+            request.getRequestDispatcher("/registration").forward(request, response);
         } else {
             User user = new User(login, password, firstName, lastName);
             UserDAO.INSTANCE.create(user);

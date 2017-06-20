@@ -8,7 +8,7 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form action="createUser" onsubmit="return validateForm()" class="login-form" method="post" name="form">
+        <form action="createUser" onsubmit="return validateForm(this)" class="login-form" method="post" name="form">
             <input type="text" placeholder="login" name="login" required/>
             <input type="password" placeholder="password" name="password" required/>
             <input type="password" placeholder="confirm" name="confirm" required/>

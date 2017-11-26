@@ -64,8 +64,8 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/intellij
-.idea/*
 src/main/resources/
 src/test/
 target/
-Servlets.JSP.JSTL.JDBC.iml
+.idea/
+/Servlets.JSP.JSTL.JDBC.iml

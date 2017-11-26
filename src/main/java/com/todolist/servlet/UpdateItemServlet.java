@@ -23,6 +23,10 @@ public class UpdateItemServlet extends HttpServlet {
         // Update item
         ItemDAO.INSTANCE.updateTextById(text, id);
         // Update page
+
         request.getRequestDispatcher("/item").forward(request, response);
     }
+
+
 }
+

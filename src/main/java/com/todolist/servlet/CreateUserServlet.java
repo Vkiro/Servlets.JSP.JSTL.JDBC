@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/createUser")
 public class CreateUserServlet extends HttpServlet {
+    private static final int PASSWORD_SIZE = 6;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +27,7 @@ public class CreateUserServlet extends HttpServlet {
         } else if (UserDAO.INSTANCE.getAllLogins().contains(login)) {
             //TODO
             request.getRequestDispatcher("/registration").forward(request, response);
-        } else if (password.length() < 6) {
+        } else if (password.length() < PASSWORD_SIZE) {
             //TODO
             request.getRequestDispatcher("/registration").forward(request, response);
         } else {

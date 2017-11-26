@@ -1,9 +1,5 @@
 package com.todolist.servlet;
 
-import com.todolist.dao.ExceptionDAO;
-import com.todolist.dao.UserDAO;
-import com.todolist.entity.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

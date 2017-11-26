@@ -9,11 +9,10 @@ public enum DBConnection {
 
     public static final String URL = "jdbc:mysql://localhost:3306/db?autoReconnect=true&useSSL=false";
     private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "123456";
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-            Class.forName("com.mysql.jdbc.Driver");
-            return DriverManager.getConnection(URL, LOGIN, PASSWORD);
-
+        Class.forName("com.mysql.jdbc.Driver");
+        return DriverManager.getConnection(URL, LOGIN, PASSWORD);
     }
 }

@@ -49,7 +49,7 @@ public enum UserDAO {
         return listLogins;
     }
 
-    public User getByLoginAndPassword(String login, String password) {
+    public User getByLoginAndPassword(String login, String password) throws ExceptionDAO {
         String query = "SELECT id, login, password, firstName, lastName FROM Users WHERE login = ? AND password = ?";
         User user;
         try (Connection connection = DBConnection.INSTANCE.getConnection();

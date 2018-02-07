@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* com.todolist.servlet.LoginServlet
+java $JAVA_OPTS -cp target/classes:target/dependency/* com.todolist.servlet.LoginServlet

@@ -14,7 +14,8 @@ import java.io.IOException;
 public class AddItemServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         Item item = new Item(request.getParameter("item"), (Integer) request.getSession().getAttribute("id"));
         ItemDAO.INSTANCE.create(item);
         request.getRequestDispatcher("/item").forward(request, response);

@@ -13,7 +13,7 @@ public enum ItemDAO {
     INSTANCE;
 
     public List<Item> getAllByUserId(int id) throws ExceptionDAO {
-        String query = "SELECT id, text, userId FROM Items WHERE userId = ?";
+        String query = "SELECT id, text, userId FROM Item WHERE userId = ?";
         List<Item> items = new ArrayList<>();
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -36,7 +36,7 @@ public enum ItemDAO {
     }
 
     public Item getById(int id) throws ExceptionDAO {
-        String query = "SELECT id, text, userId FROM Items WHERE id = ?";
+        String query = "SELECT id, text, userId FROM Item WHERE id = ?";
         Item item;
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -57,7 +57,7 @@ public enum ItemDAO {
     }
 
     public void create(Item item) throws ExceptionDAO {
-        String query = "INSERT INTO Items (text, userId) VALUES (?, ?)";
+        String query = "INSERT INTO Item (text, userId) VALUES (?, ?)";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, item.getText());
@@ -69,7 +69,7 @@ public enum ItemDAO {
     }
 
     public void updateTextById(String text, int id) throws ExceptionDAO {
-        String query = "UPDATE Items SET text = ? WHERE id = ?";
+        String query = "UPDATE Item SET text = ? WHERE id = ?";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, text);
@@ -81,7 +81,7 @@ public enum ItemDAO {
     }
 
     public void deleteById(int id) throws ExceptionDAO {
-        String query = "DELETE FROM Items WHERE id = ?";
+        String query = "DELETE FROM Item WHERE id = ?";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);

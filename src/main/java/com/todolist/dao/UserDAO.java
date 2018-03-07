@@ -13,7 +13,7 @@ public enum UserDAO {
     INSTANCE;
 
     public List<User> getAllWithoutIdAndPassword() throws ExceptionDAO {
-        String query = "SELECT login, firstName, lastName FROM Users";
+        String query = "SELECT login, firstName, lastName FROM User";
         ArrayList<User> listUsers = new ArrayList<>();
 
         try (Connection connection = DBConnection.INSTANCE.getConnection();
@@ -33,7 +33,7 @@ public enum UserDAO {
     }
 
     public List<String> getAllLogins() throws ExceptionDAO {
-        String query = "SELECT login FROM Users";
+        String query = "SELECT login FROM User";
         ArrayList<String> listLogins = new ArrayList<>();
 
         try (Connection connection = DBConnection.INSTANCE.getConnection();
@@ -50,7 +50,7 @@ public enum UserDAO {
     }
 
     public User getByLoginAndPassword(String login, String password) throws ExceptionDAO {
-        String query = "SELECT id, login, password, firstName, lastName FROM Users WHERE login = ? AND password = ?";
+        String query = "SELECT id, login, password, firstName, lastName FROM User WHERE login = ? AND password = ?";
         User user;
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -74,7 +74,7 @@ public enum UserDAO {
     }
 
     public void create(User user) throws ExceptionDAO {
-        String query = "INSERT INTO Users (login, password, firstName, lastName) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO User (login, password, firstName, lastName) VALUES (?, ?, ?, ?)";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getLogin());

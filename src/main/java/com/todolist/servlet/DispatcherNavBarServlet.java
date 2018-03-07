@@ -18,7 +18,7 @@ public class DispatcherNavBarServlet extends HttpServlet {
             request.getRequestDispatcher("/item").forward(request, response);
         } else if (request.getParameter("logout") != null) {
             request.getSession().invalidate();
-            request.getRequestDispatcher("/login").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 }

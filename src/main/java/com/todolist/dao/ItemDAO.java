@@ -27,10 +27,10 @@ public enum ItemDAO {
                     items.add(item);
                 }
             } catch (SQLException sqle) {
-                throw new ExceptionDAO("Can`t execute query", sqle);
+                throw new ExceptionDAO("Can`t get resultSet of all items.", sqle);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create connection with database.", e);
         }
         return items;
     }
@@ -48,10 +48,10 @@ public enum ItemDAO {
                 item.setText(resultSet.getString("text"));
                 item.setUserId(resultSet.getInt("userId"));
             } catch (SQLException sqle) {
-                throw new ExceptionDAO("Can`t execute query", sqle);
+                throw new ExceptionDAO("Can`t get resultSet of one item.", sqle);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create connection with database.", e);
         }
         return item;
     }
@@ -64,7 +64,7 @@ public enum ItemDAO {
             statement.setInt(2, item.getUserId());
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create new item.", e);
         }
     }
 
@@ -76,7 +76,7 @@ public enum ItemDAO {
             statement.setInt(2, id);
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t update item.", e);
         }
     }
 
@@ -87,7 +87,7 @@ public enum ItemDAO {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t delete item.", e);
         }
     }
 }

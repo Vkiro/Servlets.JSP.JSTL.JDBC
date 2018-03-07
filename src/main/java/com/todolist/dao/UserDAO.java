@@ -15,7 +15,6 @@ public enum UserDAO {
     public List<User> getAllWithoutIdAndPassword() throws ExceptionDAO {
         String query = "SELECT login, firstName, lastName FROM User";
         ArrayList<User> listUsers = new ArrayList<>();
-
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
@@ -27,7 +26,7 @@ public enum UserDAO {
                 listUsers.add(user);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t get user.", e);
         }
         return listUsers;
     }
@@ -35,7 +34,6 @@ public enum UserDAO {
     public List<String> getAllLogins() throws ExceptionDAO {
         String query = "SELECT login FROM User";
         ArrayList<String> listLogins = new ArrayList<>();
-
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
@@ -44,7 +42,7 @@ public enum UserDAO {
                 listLogins.add(login);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t get all user`s logins.", e);
         }
         return listLogins;
     }
@@ -65,10 +63,10 @@ public enum UserDAO {
                 user.setFirstName(resultSet.getString("firstName"));
                 user.setLastName(resultSet.getString("lastName"));
             } catch (SQLException sqle) {
-                throw new ExceptionDAO("Can`t execute query", sqle);
+                throw new ExceptionDAO("Can`t get user by login and password.", sqle);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t connect to the database.", e);
         }
         return user;
     }
@@ -83,7 +81,7 @@ public enum UserDAO {
             statement.setString(4, user.getLastName());
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create user", e);
         }
     }
 }

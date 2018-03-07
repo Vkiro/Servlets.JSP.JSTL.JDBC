@@ -13,7 +13,6 @@ import java.util.List;
 
 @WebServlet("/item")
 public class ItemServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Item> items = ItemDAO.INSTANCE.getAllByUserId((Integer) request.getSession().getAttribute("id"));

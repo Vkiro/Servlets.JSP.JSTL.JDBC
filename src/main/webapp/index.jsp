@@ -1,4 +1,3 @@
-<%@ page import="com.todolist.servlet.LoginServlet" %>
 <!DOCTYPE html>
 <html>
 <head>

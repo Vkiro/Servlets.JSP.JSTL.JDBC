@@ -15,7 +15,8 @@ import java.util.List;
 public class AboutServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         List<User> users = UserDAO.INSTANCE.getAllWithoutIdAndPassword();
         request.setAttribute("users", users);
         request.getRequestDispatcher("/about.jsp").forward(request, response);

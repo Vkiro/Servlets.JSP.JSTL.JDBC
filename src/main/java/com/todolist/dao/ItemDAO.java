@@ -13,7 +13,7 @@ public enum ItemDAO {
     INSTANCE;
 
     public List<Item> getAllByUserId(int id) throws ExceptionDAO {
-        String query = "SELECT id, text, userId FROM Items WHERE userId = ?";
+        String query = "SELECT id, text, userId FROM Item WHERE userId = ?";
         List<Item> items = new ArrayList<>();
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -27,16 +27,16 @@ public enum ItemDAO {
                     items.add(item);
                 }
             } catch (SQLException sqle) {
-                throw new ExceptionDAO("Can`t execute query", sqle);
+                throw new ExceptionDAO("Can`t get resultSet of all items.", sqle);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create connection with database.", e);
         }
         return items;
     }
 
     public Item getById(int id) throws ExceptionDAO {
-        String query = "SELECT id, text, userId FROM Items WHERE id = ?";
+        String query = "SELECT id, text, userId FROM Item WHERE id = ?";
         Item item;
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -48,46 +48,46 @@ public enum ItemDAO {
                 item.setText(resultSet.getString("text"));
                 item.setUserId(resultSet.getInt("userId"));
             } catch (SQLException sqle) {
-                throw new ExceptionDAO("Can`t execute query", sqle);
+                throw new ExceptionDAO("Can`t get resultSet of one item.", sqle);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create connection with database.", e);
         }
         return item;
     }
 
     public void create(Item item) throws ExceptionDAO {
-        String query = "INSERT INTO Items (text, userId) VALUES (?, ?)";
+        String query = "INSERT INTO Item (text, userId) VALUES (?, ?)";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, item.getText());
             statement.setInt(2, item.getUserId());
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t create new item.", e);
         }
     }
 
     public void updateTextById(String text, int id) throws ExceptionDAO {
-        String query = "UPDATE Items SET text = ? WHERE id = ?";
+        String query = "UPDATE Item SET text = ? WHERE id = ?";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, text);
             statement.setInt(2, id);
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t update item.", e);
         }
     }
 
     public void deleteById(int id) throws ExceptionDAO {
-        String query = "DELETE FROM Items WHERE id = ?";
+        String query = "DELETE FROM Item WHERE id = ?";
         try (Connection connection = DBConnection.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ExceptionDAO("Can`t execute query", e);
+            throw new ExceptionDAO("Can`t delete item.", e);
         }
     }
 }
